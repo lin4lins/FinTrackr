@@ -1,0 +1,4 @@
+.env
+authorization/migrations/0*.py
+data
+venv
