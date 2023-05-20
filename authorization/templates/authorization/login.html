@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Log In</title>
-</head>
-<body>
-    <h2>Log In</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Log In</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row mt-5">
+    <div class="col mt-5 pt-5">
+      <div class="card bg-light mt-5 w-50 mx-auto">
+        <article class="card-body mx-auto">
+          <h4 class="card-title mt-3 text-center">Log In</h4>
+          <form method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="{{ form.email.id_for_label }}"><i class="fa fa-envelope"></i></span>
+              {% render_field form.username class="form-control" placeholder=form.username.label type="email" aria-describedby=form.username.id_for_label %}
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="{{ form.password1.id_for_label }}"><i class="fa fa-lock"></i></span>
+              {% render_field form.password class="form-control" placeholder=form.password.label type="password" aria-describedby=form.password.id_for_label %}
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-block"> Log In  </button>
+            </div>
+            <p class="text-center mt-3"> Don't have an account? <a href="{% url 'signup' %}">Sign Up</a> </p>
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
