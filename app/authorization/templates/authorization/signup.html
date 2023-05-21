@@ -16,16 +16,46 @@
             {% csrf_token %}
             <div class="input-group mb-3">
               <span class="input-group-text" id="{{ form.email.id_for_label }}"><i class="fa fa-envelope"></i></span>
-              {% render_field form.email class="form-control" placeholder=form.email.label type="email" aria-describedby=form.email.id_for_label %}
+              {% if form.is_bound %}
+                {% if form.email.errors %}
+                  {% render_field form.email class="form-control is-invalid" placeholder=form.email.label type="email" aria-describedby=form.email.id_for_label %}
+                  <div class="invalid-feedback">{{ form.email.errors }}</div>
+                {% else %}
+                  {% render_field form.email class="form-control is-valid" placeholder=form.email.label type="email" aria-describedby=form.email.id_for_label %}
+                {% endif %}
+              {% else %}
+                {% render_field form.email class="form-control" placeholder=form.email.label type="email" aria-describedby=form.email.id_for_label %}
+              {% endif %}
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="{{ form.password1.id_for_label }}"><i class="fa fa-lock"></i></span>
-              {% render_field form.password1 class="form-control" placeholder=form.password1.label type="password" aria-describedby=form.password1.id_for_label %}
+             {% if form.is_bound %}
+                {% if form.password1.errors %}
+                  {% render_field form.password1 class="form-control is-invalid" placeholder=form.password1.label type="password" aria-describedby=form.password1.id_for_label %}
+                  <div class="invalid-feedback">{{ form.password1.errors }}</div>
+                {% else %}
+                  {% render_field form.password1 class="form-control is-valid" placeholder=form.password1.label type="password" aria-describedby=form.password1.id_for_label %}
+                {% endif %}
+              {% else %}
+                {% render_field form.password1 class="form-control" placeholder=form.password1.label type="password" aria-describedby=form.password1.id_for_label %}
+              {% endif %}
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="{{ form.password2.id_for_label }}"><i class="fa fa-lock"></i></span>
-              {% render_field form.password2 class="form-control" placeholder=form.password2.label type="password" aria-describedby=form.password2.id_for_label %}
+              {% if form.is_bound %}
+                {% if form.password2.errors %}
+                  {% render_field form.password2 class="form-control is-invalid" placeholder=form.password2.label type="password" aria-describedby=form.password2.id_for_label %}
+                  <div class="invalid-feedback">{{ form.password2.errors }}</div>
+                {% else %}
+                  {% render_field form.password2 class="form-control is-valid" placeholder=form.password2.label type="password" aria-describedby=form.password2.id_for_label %}
+                {% endif %}
+              {% else %}
+                {% render_field form.password2 class="form-control" placeholder=form.password2.label type="password" aria-describedby=form.password2.id_for_label %}
+              {% endif %}
             </div>
+            {% for error in form.non_field_errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
             </div>
