@@ -24,4 +24,5 @@ class SignUpView(View):
             login(request, user)
             return redirect(self.success_url_name)
 
+        print(f'FORM: {form.errors}')
         return render(request, self.template_name, {'form': form})
