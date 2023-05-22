@@ -3,7 +3,6 @@ from django.db import models
 
 from authorization.managers import CustomUserManager
 
-
 # Create your models here.
 
 
