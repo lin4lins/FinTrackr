@@ -11,8 +11,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     objects = CustomUserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
 
     def __str__(self):
         return self.email
-    

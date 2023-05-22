@@ -10,12 +10,12 @@ from authorization.forms import SignUpForm
 
 class SignUpView(View):
     form_class = SignUpForm
-    template_name = 'authorization/signup.html'
-    success_url_name = 'home'
+    template_name = "authorization/signup.html"
+    success_url_name = "home"
 
     def get(self, request):
         form = self.form_class()
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {"form": form})
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -24,5 +24,4 @@ class SignUpView(View):
             login(request, user)
             return redirect(self.success_url_name)
 
-        print(f'FORM: {form.errors}')
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {"form": form})
