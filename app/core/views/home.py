@@ -10,4 +10,4 @@ class HomeView(LoginRequiredMixin, View):
     redirect_url = reverse_lazy("feed")
 
     def get(self, request):
-        return render(request, self.template_name, {"message": "Home page"})
+        return render(request, self.template_name, {"nbar": "home"})
