@@ -1,75 +1,52 @@
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 {% load static %}
 
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" aria-label="Eleventh navbar example">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="header-navbar">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link {% if nbar == 'home' %}active{% endif %}" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Accounts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Categories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Currencies</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Transactions</a>
-            </li>
-
-          </ul>
-
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ user }}
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li class="nav-item"><a class="dropdown-item d-flex justify-content-between" href="#"><span>Log Out</span> <img src="{% static 'logout.png' %}"></a></li>
-          </ul>
-        </div>
-
-      </div>
-    </nav>
-</div>
-
-<div class="container-fluid" style="background-color: #eff0f2">
-  <div class="container ">
+<div class="container-fluid mt-3">
+  <div class="container">
     <div class="row">
-      <div class="col" style="background-color: white">
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+        <div class="card p-3 mb-2">
+          <h5 class="card-title">Cash flows</h5>
+          <div id="home_cash_flow"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
         <div class="card">
-          <div class="card-header">
-            Featured
-          </div>
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">Balance</h5>
+            <div id="home_balance"></div>
           </div>
         </div>
       </div>
-      <div class="col" style="background-color: white">
-        Column
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Expense structure</h5>
+            <div id="expense_structure"></div>
+          </div>
+        </div>
       </div>
-      <div class="col" style="background-color: white">
-        Column
-      </div>
+
     </div>
   </div>
 </div>
+
+{% endblock %}
+
+
+{% block footer_js %}
+  {{ block.super }}
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="{% static 'home/cash_flow.js' %}"></script>
+  <script type="text/javascript" src="{% static 'home/expense_structure.js' %}"></script>
+  <script type="text/javascript" src="{% static 'home/balance.js' %}"></script>
 
 {% endblock %}
