@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <form action = "" method = "post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value=Submit">
+  </form>
+{% endblock %}
+
+
+{% block footer_js %}
+  {{ block.super }}
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="{% static 'home/cash_flow.js' %}"></script>
+  <script type="text/javascript" src="{% static 'home/expense_structure.js' %}"></script>
+  <script type="text/javascript" src="{% static 'home/balance.js' %}"></script>
+
+{% endblock %}
