@@ -1,6 +1,6 @@
 from django.db import models
 
-from authorization.models import User
+from app.authorization.models import User
 
 
 class Currency(models.Model):
@@ -17,8 +17,8 @@ class Category(models.Model):
     INCOME = "i"
     EXPENSE = "e"
     TYPE = (
-        (INCOME, "income"),
-        (EXPENSE, "expense"),
+        (INCOME, "Дохід"),
+        (EXPENSE, "Витрата"),
     )
     type = models.CharField(max_length=1, choices=TYPE, default=EXPENSE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories")
