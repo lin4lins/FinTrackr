@@ -1,10 +1,41 @@
 
 
 body {
-    background-color: #eee
+    background-color: #eee;
 }
 
 .card {
     border: none;
-    border-radius: 10px
+    border-radius-top: 10px;
+}
+
+#home-accounts-panel {
+		margin-top: 15px;
+		background-color: white;
+		border-radius: 10px;
+		border: none;
+}
+
+.account-card {
+	color: white;
+	border: none;
+  border-radius: 5px;
+  max-height: 55px;
+  padding: 5px 10px;
+}
+
+.account-card .detail {
+	font-weight: 900;
+}
+
+.purple {
+	background-color: #ba68c8 !important;
+}
+
+.orange {
+	background-color: #ffa500 !important;
+}
+
+.red {
+	background-color: #d32f2f !important;
 }
