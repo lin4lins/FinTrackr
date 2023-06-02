@@ -5,21 +5,62 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
+<div id="home-accounts-panel" class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+      <div class="account-card d-flex orange">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-wallet fa-xl"></i>
+          </div>
+          <div class="ms-2 ps-2">
+            <div class="account-card-name">Готівка</div>
+            <div class="detail"><span class="amount">12,451.00</span>  <span class="currency">&#8372</span></div>
+          </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+      <div class="account-card d-flex purple">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-wallet fa-xl"></i>
+          </div>
+          <div class="ms-2 ps-2">
+            <div class="account-card-name">Картка</div>
+            <div class="detail"><span class="amount">12,451.00</span>  <span class="currency">&#8372</span></div>
+          </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+      <div class="account-card d-flex red">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-wallet fa-xl"></i>
+          </div>
+          <div class="ms-2 ps-2">
+            <div class="account-card-name">Збереження</div>
+            <div class="detail"><span class="amount">12,451.00</span>  <span class="currency">&#8372</span></div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid mt-3">
   <div class="container">
     <div class="row">
 
       <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
-        <div class="card p-3 mb-2">
-          <h5 class="card-title">Cash flows</h5>
-          <div id="home_cash_flow"></div>
+        <div class="card">
+          <div class="card-body px-0">
+            <h5 class="card-title ps-3">Cash flows</h5>
+            <div id="home_cash_flow"></div>
+          </div>
         </div>
       </div>
 
       <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Balance</h5>
+          <div class="card-body px-0">
+            <h5 class="card-title ps-3">Balance</h5>
             <div id="home_balance"></div>
           </div>
         </div>
@@ -27,8 +68,8 @@
 
       <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Expense structure</h5>
+          <div class="card-body px-0">
+            <h5 class="card-title ps-3">Expense structure</h5>
             <div id="expense_structure"></div>
           </div>
         </div>

@@ -13,6 +13,7 @@ function drawChart() {
   var options = {
     title: 'Categories',
     is3D: true,
+    height: 250,
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('expense_structure'));

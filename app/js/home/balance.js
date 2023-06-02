@@ -41,7 +41,9 @@ function drawBasic() {
           title: 'Balance',
           minValue: 0
         },
-        legend: { position: 'none' }
+        legend: { position: 'none' },
+        height: 250,
+
       };
 
       var chart = new google.visualization.LineChart(document.getElementById('home_balance'));

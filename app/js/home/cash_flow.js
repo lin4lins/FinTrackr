@@ -21,8 +21,10 @@ function drawMultSeries() {
         title: '',
         minValue: 0,
       },
-      bar: {groupWidth: "95%"},
+      bar: {groupWidth: "75%"},
       legend: { position: "none" },
+      height: 250,
+
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('home_cash_flow'));
