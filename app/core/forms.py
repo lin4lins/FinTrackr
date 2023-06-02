@@ -9,10 +9,4 @@ class CategoryForm(forms.ModelForm):
 
         labels = {
             'name': "Ім'я",
-            'type': 'Тип',
-
-        }
-
-        widgets = {
-            'type': forms.RadioSelect(choices=Category.TYPE,),
         }
