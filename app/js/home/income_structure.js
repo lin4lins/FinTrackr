@@ -16,7 +16,7 @@ function drawChart() {
     height: 250,
   };
 
-  var chart_element = document.getElementById('expense_structure');
+  var chart_element = document.getElementById('income_structure');
   var chart = new google.visualization.PieChart(chart_element);
   chart.draw(data, options);
 }
