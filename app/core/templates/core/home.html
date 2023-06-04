@@ -44,11 +44,11 @@
   </div>
 </div>
 
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-2">
   <div class="container">
     <div class="row">
 
-      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
         <div class="card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Cash flows</h5>
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
         <div class="card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Balance</h5>
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
         <div class="card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Структура витрат</h5>
@@ -75,7 +75,16 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+        <div class="card">
+          <div class="card-body px-0">
+            <h5 class="card-title ps-3">Лінія тренду</h5>
+            <div id="polynomial_trend"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
         <div class="card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Структура доходу</h5>
@@ -99,5 +108,6 @@
   <script type="text/javascript" src="{% static 'home/expense_structure.js' %}"></script>
   <script type="text/javascript" src="{% static 'home/income_structure.js' %}"></script>
   <script type="text/javascript" src="{% static 'home/balance.js' %}"></script>
+  <script type="text/javascript" src="{% static 'home/trend.js' %}"></script>
 
 {% endblock %}
