@@ -4,8 +4,8 @@ google.charts.setOnLoadCallback(drawBasic);
 function drawBasic() {
 
       var data = new google.visualization.DataTable();
-      data.addColumn('number', 'Day');
-      data.addColumn('number', 'Amount');
+      data.addColumn('number', 'День');
+      data.addColumn('number', 'Баланс');
 
       data.addRows([
         [1,  37.8],
@@ -33,12 +33,12 @@ function drawBasic() {
       var options = {
 
         hAxis: {
-          title: 'Day',
+          title: 'День',
           minValue: 1,
           maxValue: 31
         },
         vAxis: {
-          title: 'Balance',
+          title: 'Баланс',
           minValue: 0
         },
         legend: { position: 'none' },
