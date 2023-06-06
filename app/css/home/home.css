@@ -1,41 +1,80 @@
-
-
 body {
     background-color: #eee;
 }
 
 .card {
     border: none;
-    border-radius-top: 10px;
+    border-radius: 10px;
+	min-height: 315px;
 }
 
 #home-accounts-panel {
-		margin-top: 15px;
-		background-color: white;
-		border-radius: 10px;
-		border: none;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
 }
 
 .account-card {
-	color: white;
-	border: none;
-  border-radius: 5px;
-  max-height: 55px;
-  padding: 5px 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    max-height: 55px;
+    padding: 5px 10px;
 }
 
 .account-card .detail {
-	font-weight: 900;
+    font-weight: 900;
+}
+
+.transaction-card {
+	border-bottom: 1px solid #e5e9ed;
+	margin: 1vh 2vh;
+	padding: 0 1vh;
+}
+
+.transaction-card .category {
+    font-size: 15px;
+    font-weight: 500;
+    color: #354052;
+}
+
+.transaction-card .account {
+	font-size: 14px;
+    font-weight: 400;
+    line-height: 1.14;
+    color: #354052;
+}
+
+.transaction-card .date {
+	font-size: .9em;
+    color: #7f8fa4;
+}
+
+.transaction-card .sum {
+	font-size: 16px;
+	font-weight: 500;
+    text-align: right;
+
+}
+
+
+.income-transaction-color {
+	color: #21cb87 !important;
+}
+
+.expense-transaction-color {
+	color: #fe3b2c !important;
 }
 
 .purple {
-	background-color: #ba68c8 !important;
+    background-color: #ba68c8 !important;
 }
 
 .orange {
-	background-color: #ffa500 !important;
+    background-color: #ffa500 !important;
 }
 
 .red {
-	background-color: #d32f2f !important;
+    background-color: #d32f2f !important;
 }
