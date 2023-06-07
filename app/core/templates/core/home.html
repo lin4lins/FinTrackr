@@ -44,33 +44,112 @@
   </div>
 </div>
 
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-2">
   <div class="container">
     <div class="row">
 
-      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
         <div class="card">
           <div class="card-body px-0">
-            <h5 class="card-title ps-3">Cash flows</h5>
+            <h5 class="card-title ps-3">Грошові потоки</h5>
             <div id="home_cash_flow"></div>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
         <div class="card">
           <div class="card-body px-0">
-            <h5 class="card-title ps-3">Balance</h5>
+            <h5 class="card-title ps-3">Динаміка</h5>
             <div id="home_balance"></div>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
         <div class="card">
           <div class="card-body px-0">
-            <h5 class="card-title ps-3">Expense structure</h5>
+            <h5 class="card-title ps-3">Структура витрат</h5>
             <div id="expense_structure"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+        <div class="card">
+          <div class="card-body px-0">
+            <h5 class="card-title ps-3">Останні транзакції</h5>
+
+            <div class="transaction-card d-flex justify-content-between">
+              <div class="d-flex flex-column">
+                <div class="category">Комунальні платежі</div>
+                <div class="account">Готівка</div>
+              </div>
+              <div class="d-flex flex-column text-end">
+                <div class="sum expense-transaction-color">
+                  <span class="amount">-2,451.00</span>  <span class="currency">&#8372</span>
+                </div>
+                <div class="date">24.05.2023, 20:45</div>
+              </div>
+            </div>
+
+            <div class="transaction-card d-flex justify-content-between">
+              <div class="d-flex flex-column">
+                <div class="category">Фріланс</div>
+                <div class="account">Картка</div>
+              </div>
+              <div class="d-flex flex-column text-end">
+                <div class="sum income-transaction-color">
+                  <span class="amount">9,500.00</span>  <span class="currency">&#8372</span>
+                </div>
+                <div class="date">24.06.2023, 13:00</div>
+              </div>
+            </div>
+
+                        <div class="transaction-card d-flex justify-content-between">
+              <div class="d-flex flex-column">
+                <div class="category">Комунальні платежі</div>
+                <div class="account">Готівка</div>
+              </div>
+              <div class="d-flex flex-column text-end">
+                <div class="sum expense-transaction-color">
+                  <span class="amount">-2,451.00</span>  <span class="currency">&#8372</span>
+                </div>
+                <div class="date">24.05.2023, 20:45</div>
+              </div>
+            </div>
+
+            <div class="transaction-card d-flex justify-content-between">
+              <div class="d-flex flex-column">
+                <div class="category">Фріланс</div>
+                <div class="account">Картка</div>
+              </div>
+              <div class="d-flex flex-column text-end">
+                <div class="sum income-transaction-color">
+                  <span class="amount">9,500.00</span>  <span class="currency">&#8372</span>
+                </div>
+                <div class="date">24.06.2023, 13:00</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+        <div class="card">
+          <div class="card-body px-0">
+            <h5 class="card-title ps-3">Лінія тренду</h5>
+            <div id="polynomial_trend"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+        <div class="card">
+          <div class="card-body px-0">
+            <h5 class="card-title ps-3">Структура доходу</h5>
+            <div id="income_structure"></div>
           </div>
         </div>
       </div>
@@ -88,6 +167,8 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript" src="{% static 'home/cash_flow.js' %}"></script>
   <script type="text/javascript" src="{% static 'home/expense_structure.js' %}"></script>
+  <script type="text/javascript" src="{% static 'home/income_structure.js' %}"></script>
   <script type="text/javascript" src="{% static 'home/balance.js' %}"></script>
+  <script type="text/javascript" src="{% static 'home/trend.js' %}"></script>
 
 {% endblock %}

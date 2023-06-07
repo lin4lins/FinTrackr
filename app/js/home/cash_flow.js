@@ -4,8 +4,8 @@ google.charts.setOnLoadCallback(drawMultSeries);
 function drawMultSeries() {
     var data = google.visualization.arrayToDataTable([
        ['Type', 'Value', { role: 'style' }],
-       ['Income', 219.45, '#28CB7C' ],
-       ['Expense', 196.30, '#E74C3C'],
+       ['Дохід', 219.45, '#28CB7C' ],
+       ['Витрати', 196.30, '#E74C3C'],
     ]);
 
     var view = new google.visualization.DataView(data);
