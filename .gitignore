@@ -130,4 +130,4 @@ dmypy.json
 
 # IDEs
 .idea
-app/static/fontawesomefree/
+app/static/*

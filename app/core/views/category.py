@@ -1,4 +1,4 @@
-from core.forms import CategoryForm
+from core.forms import CategoryCreateForm, CategoryUpdateForm
 from core.models import Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import IntegrityError
@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views import View
 
 
-class CategoryView(LoginRequiredMixin, View):
+class CategoryListView(LoginRequiredMixin, View):
     login_url = reverse_lazy("login")
     template_name = "core/category.html"
     success_url = reverse_lazy("category")
@@ -17,7 +17,7 @@ class CategoryView(LoginRequiredMixin, View):
         user = request.user
         user_categories = Category.objects.filter(user=user).all()
         form = CategoryForm()
-        return render(request, self.template_name, {'categories': user_categories, 'form': form})
+        return render(request, self.template_name, {"categories": user_categories, "form": form})
 
     def post(self, request):
         form = CategoryForm(request.POST)
@@ -29,10 +29,10 @@ class CategoryView(LoginRequiredMixin, View):
                 return redirect(self.success_url)
 
             except IntegrityError:
-                form.add_error('name', 'Така категорія вже існує')
+                form.add_error("name", "Така категорія вже існує")
 
         user_categories = Category.objects.filter(user=request.user).all()
-        return render(request, self.template_name, {'categories': user_categories, 'form': form})
+        return render(request, self.template_name, {"categories": user_categories, "form": form})
 
 
 class CategoryDetailView(LoginRequiredMixin, View):
