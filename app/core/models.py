@@ -17,11 +17,17 @@ class Category(models.Model):
     INCOME = "i"
     EXPENSE = "e"
     TYPE = (
-        (INCOME, "income"),
-        (EXPENSE, "expense"),
+        (INCOME, "Дохід"),
+        (EXPENSE, "Витрата"),
     )
     type = models.CharField(max_length=1, choices=TYPE, default=EXPENSE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories")
+
+    class Meta:
+        unique_together = (
+            "name",
+            "user",
+        )
 
     def __str__(self):
         return f"category:name={self.name};type={self.type};user={self.user}"
