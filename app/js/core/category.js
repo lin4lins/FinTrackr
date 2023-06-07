@@ -11,8 +11,8 @@ function deleteCategory(categoryId, csrfToken) {
     })
     .then(function(response) {
       if (response.ok) {
-        let card = document.getElementById(`card-${categoryId}`);
-        card.remove();
+        let category = document.getElementById(`category-${categoryId}`);
+        category.remove();
       } else {
         alert("Не вдалося видалити категорію.");
       }
