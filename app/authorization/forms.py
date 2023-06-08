@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import User
+from .utils import create_user_default_categories
 
 
 class SignUpForm(UserCreationForm):
@@ -16,6 +17,11 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("email", "password1", "password2")
+
+    def save(self, commit=True):
+        user = super().save(commit=True)
+        create_user_default_categories(user)
+        return user
 
 
 class CustomAuthenticationForm(AuthenticationForm):
