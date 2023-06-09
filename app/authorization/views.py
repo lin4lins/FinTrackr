@@ -1,8 +1,10 @@
 from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
 from django.views import View
 
-from authorization.forms import SignUpForm
+from authorization.forms import SignUpForm, CustomAuthenticationForm
+
 
 # Create your views here.
 
@@ -24,3 +26,7 @@ class SignUpView(View):
             return redirect(self.success_url_name)
 
         return render(request, self.template_name, {"form": form})
+
+
+class CustomLoginView(LoginView):
+    form_class = CustomAuthenticationForm

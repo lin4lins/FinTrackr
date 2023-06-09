@@ -1,38 +1,68 @@
 {% extends "authorization/base.html" %}
 
+{% load static %}
 {% load widget_tweaks %}
 
-{% block title %}Log In{% endblock %}
+{% block title %}Вхід{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row mt-5">
-    <div class="col mt-5 pt-5">
-      <div class="card bg-light mt-5 w-50 mx-auto">
-        <article class="card-body mx-auto">
-          <h4 class="card-title mt-3 text-center">Log In</h4>
-          <form method="post">
-            {% csrf_token %}
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="{{ form.username.id_for_label }}"><i class="fa fa-envelope"></i></span>
-              {% render_field form.username class="form-control" placeholder=form.username.label type="email" aria-describedby=form.username.id_for_label %}
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="{{ form.password.id_for_label }}"><i class="fa fa-lock"></i></span>
-              {% render_field form.password class="form-control" placeholder=form.password.label type="password" aria-describedby=form.password.id_for_label %}
-            </div>
-            {% for error in form.non_field_errors %}
+<div class="container" >
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-4 mb-3 mb-md-0">
+      <div class="row justify-content-center">
+        <div class="col-9">
+          <img src="{% static 'core/logo.png' %}" alt="Logo" class="img-fluid" height="20">
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="card shadow-sm border-top-0">
+          <div class="card-body">
+            <h2 class="fw-bolder text-center">Вхід</h2>
+            <hr class="mb-3">
+            <form method='POST' action="{% url 'login' %}" class="form-group" novalidate>
+              {% csrf_token %}
+              {% for error in form.non_field_errors %}
                 <small class="text-danger">{{ error }}</small>
-            {% endfor %}
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary btn-block"> Log In  </button>
-            </div>
-            <p class="text-center mt-3"> Don't have an account? <a href="{% url 'signup' %}">Sign Up</a> </p>
-          </form>
-        </article>
+                {% endfor %}
+              {% for field in form.visible_fields %}
+                <div class="mt-3">
+                  {% if form.is_bound %}
+                    {% if field.errors %}
+                      {% render_field field class="form-control is-invalid" placeholder=field.label %}
+                      {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% elif form.non_field_errors %}
+                      {% render_field field class="form-control is-invalid" placeholder=field.label %}
+                    {% else %}
+                      {% render_field field class="form-control is-valid" placeholder=field.label %}
+                    {% endif %}
+                  {% else %}
+                    {% render_field field class="form-control" placeholder=field.label %}
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn text-white fw-bolder" style="background-color: #00BF63">Увійти</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="card shadow-sm border-top-0 text-center">
+          <div class="card-body">
+            <h5 class="fw-light">Не зареєстровані? <a href="{% url 'signup' %}" class="text-decoration-none" style="color: #00BF63">Зареєструватися</a></h5>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 {% endblock %}
+

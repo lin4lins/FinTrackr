@@ -2,7 +2,7 @@ body {
     background-color: #eee;
 }
 
-.card {
+.dashboard-card {
     border: none;
     border-radius: 10px;
 	min-height: 315px;

@@ -39,8 +39,19 @@ class CategoryDetailView(LoginRequiredMixin, View):
     login_url = reverse_lazy("login")
     success_url = reverse_lazy("category")
 
-    def post(self):
-        pass
+    def post(self, request, category_id):
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.get(id=category_id)
+            category.name = form.cleaned_data.get("name")
+            try:
+                category.save()
+                return redirect(self.success_url)
+
+            except IntegrityError:
+                form.add_error("name", "Категорія з таким ім'ям вже існує")
+
+        return redirect(self.success_url)
 
     def delete(self, request, category_id):
         category = get_object_or_404(Category, id=category_id, user=request.user)
