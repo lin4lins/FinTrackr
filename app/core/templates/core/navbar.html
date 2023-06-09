@@ -15,7 +15,7 @@
               <a class="nav-link text-center {% if active_page == 'home' %}active{% endif %}" href="{% url 'home' %}">Головна</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center {% if active_page == 'accounts' %}active{% endif %}" href="#">Рахунки</a>
+              <a class="nav-link text-center {% if active_page == 'accounts' %}active{% endif %}" href="{% url 'account' %}">Рахунки</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-center {% if active_page == 'categories' %}active{% endif %}" href="{% url 'category' %}">Категорії</a>
