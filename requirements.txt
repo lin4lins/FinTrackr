@@ -7,3 +7,4 @@ black==23.3.0
 pylint-django==2.5.3
 flake8==6.0.0
 fontawesomefree==6.4.0
+django-colorfield==0.8.0

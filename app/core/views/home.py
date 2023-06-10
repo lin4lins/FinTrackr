@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 
+from core.models import Account
+
 
 class HomeView(LoginRequiredMixin, View):
     login_url = reverse_lazy("login")
@@ -10,4 +12,7 @@ class HomeView(LoginRequiredMixin, View):
     redirect_url = reverse_lazy("home")
 
     def get(self, request):
-        return render(request, self.template_name, {"active_page": "home"})
+        user_accounts = Account.objects.filter(user=request.user)
+        return render(
+            request, self.template_name, {"active_page": "home", "accounts": user_accounts}
+        )
