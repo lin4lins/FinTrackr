@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 
 from authorization.models import User
 
@@ -38,6 +39,7 @@ class Account(models.Model):
     balance = models.FloatField()
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE, related_name="accounts")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="accounts")
+    color = ColorField(default="#FF0000")
 
     def __str__(self):
         return (

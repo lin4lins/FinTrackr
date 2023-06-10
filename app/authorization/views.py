@@ -12,7 +12,7 @@ from authorization.forms import SignUpForm, CustomAuthenticationForm
 class SignUpView(View):
     form_class = SignUpForm
     template_name = "authorization/signup.html"
-    success_url_name = "home"
+    success_url = "account-create-first"
 
     def get(self, request):
         form = self.form_class()
@@ -23,7 +23,7 @@ class SignUpView(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect(self.success_url_name)
+            return redirect(self.success_url)
 
         return render(request, self.template_name, {"form": form})
 

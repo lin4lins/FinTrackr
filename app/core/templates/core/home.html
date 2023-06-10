@@ -8,39 +8,19 @@
 
 <div id="home-accounts-panel" class="container">
   <div class="row">
+    {%  for account in accounts %}
     <div class="col-sm-6 col-md-4 col-lg-3 p-3">
-      <div class="account-card d-flex orange">
-          <div class="d-flex align-items-center">
-            <i class="fa-solid fa-wallet fa-xl"></i>
-          </div>
-          <div class="ms-2 ps-2">
-            <div class="account-card-name">Готівка</div>
-            <div class="detail"><span class="amount">12,451.00</span>  <span class="currency">&#8372</span></div>
-          </div>
+      <div class="account-card d-flex" style="background-color: {{ account.color }}">
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-wallet fa-xl"></i>
+        </div>
+        <div class="ms-2 ps-2">
+          <div class="account-card-name">{{ account.name }}</div>
+          <div class="detail"><span class="amount">{{ account.balance }}</span>  <span class="currency">{{ account.currency.symbol }}</span></div>
+        </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-4 col-lg-3 p-3">
-      <div class="account-card d-flex purple">
-          <div class="d-flex align-items-center">
-            <i class="fa-solid fa-wallet fa-xl"></i>
-          </div>
-          <div class="ms-2 ps-2">
-            <div class="account-card-name">Картка</div>
-            <div class="detail"><span class="amount">12,451.00</span>  <span class="currency">&#8372</span></div>
-          </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3 p-3">
-      <div class="account-card d-flex red">
-          <div class="d-flex align-items-center">
-            <i class="fa-solid fa-wallet fa-xl"></i>
-          </div>
-          <div class="ms-2 ps-2">
-            <div class="account-card-name">Збереження</div>
-            <div class="detail"><span class="amount">12,451.00</span>  <span class="currency">&#8372</span></div>
-          </div>
-      </div>
-    </div>
+    {%  endfor %}
   </div>
 </div>
 
