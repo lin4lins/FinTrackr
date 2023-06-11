@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load transaction_color %}
 {% load static %}
 
 
@@ -59,58 +60,20 @@
         <div class="card dashboard-card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Останні транзакції</h5>
-
-            <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Комунальні платежі</div>
-                <div class="account">Готівка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum expense-transaction-color">
-                  <span class="amount">-2,451.00</span>  <span class="currency">&#8372</span>
+            {% for transaction in last_transactions %}
+              <div class="transaction-card d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                  <div class="category">{{ transaction.category.name }}</div>
+                  <div class="account">{{ transaction.account.name }}</div>
                 </div>
-                <div class="date">24.05.2023, 20:45</div>
-              </div>
-            </div>
-
-            <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Фріланс</div>
-                <div class="account">Картка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum income-transaction-color">
-                  <span class="amount">9,500.00</span>  <span class="currency">&#8372</span>
+                <div class="d-flex flex-column text-end">
+                  <div class="sum {{ transaction|transaction_color }}">
+                    <span class="amount">{{ transaction.amount }}</span> <span class="currency">{{ transaction.account.currency.symbol }}</span>
+                  </div>
+                  <div class="date">{{ transaction.created_at|date:"d.m.Y, H:i" }}</div>
                 </div>
-                <div class="date">24.06.2023, 13:00</div>
               </div>
-            </div>
-
-                        <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Комунальні платежі</div>
-                <div class="account">Готівка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum expense-transaction-color">
-                  <span class="amount">-2,451.00</span>  <span class="currency">&#8372</span>
-                </div>
-                <div class="date">24.05.2023, 20:45</div>
-              </div>
-            </div>
-
-            <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Фріланс</div>
-                <div class="account">Картка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum income-transaction-color">
-                  <span class="amount">9,500.00</span>  <span class="currency">&#8372</span>
-                </div>
-                <div class="date">24.06.2023, 13:00</div>
-              </div>
-            </div>
+            {% endfor %}
 
           </div>
         </div>
