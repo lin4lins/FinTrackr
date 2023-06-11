@@ -33,7 +33,7 @@
         <div class="card dashboard-card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Грошові потоки</h5>
-            <div id="home_cash_flow"></div>
+            <div id="cash_flow"></div>
           </div>
         </div>
       </div>
@@ -108,7 +108,9 @@
   {{ block.super }}
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
-  <script type="text/javascript" src="{% static 'core/home/cash_flow.js' %}" defer></script>
+  <script type="text/javascript" src="{% static 'core/home/cash_flow.js' %}" defer
+          data-cash-flow-data="{{ cash_flow_data }}"
+          data-chart-element-id="cash_flow"></script>
 
   <script type="text/javascript" src="{% static 'core/home/expense_structure.js' %}" defer
           data-expense-structure-data="{{ expense_structure_data }}"

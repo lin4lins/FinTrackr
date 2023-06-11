@@ -45,3 +45,29 @@ class CategoryStructureGenerator:
             self.expense_structure_data.append([category.name, total_amount])
         if category.type == Category.INCOME:
             self.income_structure_data.append([category.name, total_amount])
+
+
+class CashFlowData:
+    def __init__(self, account):
+        self.__account = account
+
+        income_color = "#28CB7C"
+        expense_color = "#E74C3C"
+        headers = ["Type", "Value", {"role": "style"}]
+
+        self.data = [
+            headers,
+            ["Дохід", self.__get_total_amount(expense=False), income_color],
+            ["Витрати", self.__get_total_amount(expense=True), expense_color],
+        ]
+
+    def __get_total_amount(self, expense=False):
+        category_type = Category.EXPENSE if expense else Category.INCOME
+        expenses = Transaction.objects.filter(
+            account=self.__account, category__type=category_type
+        ).aggregate(total_amount=Sum("amount"))
+
+        total_amount = expenses["total_amount"] or 0
+        total_expenses = round(total_amount, 2)
+
+        return total_expenses
