@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views import View
 
 
-class CategoryView(LoginRequiredMixin, View):
+class CategoryListView(LoginRequiredMixin, View):
     login_url = reverse_lazy("login")
     template_name = "core/category.html"
     success_url = reverse_lazy("category")
