@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from colorfield.fields import ColorField
 
 from authorization.models import User
@@ -50,7 +50,7 @@ class Account(models.Model):
 
 class Transaction(models.Model):
     amount = models.FloatField()
-    note = models.CharField(max_length=255)
+    note = models.CharField(max_length=255, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="transactions")
     account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="transactions")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -60,3 +60,18 @@ class Transaction(models.Model):
             f"transaction:amount={self.amount};category={self.category};account={self.account};"
             f"note={self.note};created_at={self.created_at}"
         )
+
+    def save(self, *args, **kwargs):
+        with transaction.atomic():
+            super().save(*args, **kwargs)
+            if self.category.type == Category.EXPENSE:
+                self.amount *= -1
+
+            self.account.balance += self.amount
+            self.account.save()
+
+    def delete(self, *args, **kwargs):
+        with transaction.atomic():
+            self.account.balance -= self.amount
+            self.account.save()
+            super().delete(*args, **kwargs)

@@ -21,10 +21,16 @@
               <a class="nav-link text-center {% if active_page == 'categories' %}active{% endif %}" href="{% url 'category' %}">Категорії</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-center {% if active_page == 'transactions' %}active{% endif %}" href="#">Транзакції</a>
+              <a class="nav-link text-center {% if active_page == 'transactions' %}active{% endif %}" href="{% url 'transaction' %}">Транзакції</a>
             </li>
           </ul>
           <div class="btn-group d-flex">
+            <a href="{% url 'transaction-create' %}">
+                <button class="btn btn-primary btn-sm me-3" type="button">
+                    <i class="fa-solid fa-plus"></i>
+                    Транзакція
+                </button>
+            </a>
             <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{ user }}
             </button>

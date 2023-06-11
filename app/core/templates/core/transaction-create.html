@@ -1,0 +1,70 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}Створити транзакцію{% endblock %}
+{% block content %}
+
+<div class="container" >
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-5 mb-3 mb-md-0">
+      <div class="row mt-5">
+        <div class="card shadow-sm border-top-0">
+          <div class="card-body text-center">
+            <h2 class="fw-bolder text-center">Створіть транзакцію</h2>
+            <hr class="mb-3">
+            <form method='POST' action="{% url 'transaction-create' %}" class="form-group">
+              {% csrf_token %}
+              <div class="form-group">
+                <div class="mt-3">
+                  {% render_field form.amount class="form-control" placeholder=form.amount.label %}
+                </div>
+                <div class="mt-3">
+                  {% render_field form.account class="form-control" placeholder=form.account.label %}
+                </div>
+                <div class="mt-3">
+                  <div class="container">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <div class="btn-group">
+                          <button type="button" id="expense-btn" class="btn btn-danger">Витрата</button>
+                          <button type="button" id="income-btn" class="btn btn-outline-success">Дохід</button>
+                        </div>
+                      </div>
+                      <div id="exp-category-div" class="col-auto" style="display: block;">
+                        <select name="category" class="form-select" aria-label="Default select example">
+                          <option selected>Категорія</option>
+                          {% for exp in expense_categories %}
+                            <option value="{{ exp.id }}">{{ exp.name }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div id="inc-category-div" class="col-auto" style="display: none;">
+                        <select name="category" class="form-select" aria-label="Default select example">
+                          <option selected>Категорія</option>
+                          {% for inc in income_categories %}
+                            <option value="{{ inc.id }}">{{ inc.name }}</option>
+                          {% endfor %}
+                          </select>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  {% render_field form.note class="form-control" placeholder=form.note.label %}
+                </div>
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success fw-bolder">Створити</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%  endblock %}
