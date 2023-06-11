@@ -57,7 +57,9 @@ class TransactionListView(LoginRequiredMixin, View):
 
     def get(self, request):
         user = request.user
-        transactions = Transaction.objects.filter(account__in=user.accounts.all())
+        transactions = Transaction.objects.filter(account__in=user.accounts.all()).order_by(
+            "-created_at"
+        )
         return render(
             request,
             self.template_name,

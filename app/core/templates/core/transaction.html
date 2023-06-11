@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
+{% load transaction_color %}
 {% load static %}
 {% load widget_tweaks %}
-{% load timestamps %}
 
 
 {% block title %}Транзакції{% endblock %}
@@ -60,7 +60,7 @@
                 <div class="col-1 text-center">
                   <div class="">{{ forloop.counter }}</div>
                 </div>
-                <div class="col-2 fw-bolder"> {# TODO add colors #}
+                <div class="col-2 fw-bolder {{ transaction|transaction_color }}">
                   <div>{{ transaction.amount }} {{ transaction.account.symbol }}</div>
                 </div>
                 <div class="col-3 text-center">
@@ -69,9 +69,8 @@
                 <div class="col-3 text-center">
                   <div class="">{{ transaction.account.name }}</div>
                 </div>
-                {% get_data_from_timestamp transaction.created_at as transaction_datetime %}
                 <div class="col-2 text-center">
-                  <div class="">{{ transaction_datetime }}</div>
+                  <div class="">{{ transaction.created_at|date:"d.m.Y, H:i" }}</div>
                 </div>
                 <div class="col-1 text-center">
                   <button class="btn text-danger" onclick="deleteTransaction('{{ transaction.id }}', '{{ csrf_token }}')">
