@@ -28,7 +28,7 @@ class AccountForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ["name", "balance", "currency"]
+        fields = ["name", "balance", "currency", "color"]
         labels = {"name": "Назва", "balance": "Баланс", "currency": "Валюта"}
 
 
