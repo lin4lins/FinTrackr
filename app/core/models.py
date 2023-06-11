@@ -63,9 +63,9 @@ class Transaction(models.Model):
 
     def save(self, *args, **kwargs):
         with transaction.atomic():
-            super().save(*args, **kwargs)
             if self.category.type == Category.EXPENSE:
                 self.amount *= -1
+            super().save(*args, **kwargs)
 
             self.account.balance += self.amount
             self.account.save()

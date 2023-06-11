@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 
@@ -61,8 +62,15 @@ class TransactionListView(LoginRequiredMixin, View):
             request,
             self.template_name,
             {
-                "categories": user.categories,
-                "accounts": user.accounts,
                 "transactions": transactions,
             },
         )
+
+
+class TransactionDetailView(LoginRequiredMixin, View):
+    login_url = reverse_lazy("login")
+
+    def delete(self, request, transaction_id):
+        category = get_object_or_404(Transaction, id=transaction_id, account__user=request.user)
+        category.delete()
+        return HttpResponse(status=204)

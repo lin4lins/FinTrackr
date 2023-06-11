@@ -1,9 +1,92 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load widget_tweaks %}
+{% load timestamps %}
 
 
 {% block title %}Транзакції{% endblock %}
 {% block content %}
-{{ transactions }}
+
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-9 mb-4 mb-md-0">
+      <div class="row mt-5">
+        <div class="col-10">
+          <h3 class="fw-bolder text-start">Транзакції</h3>
+        </div>
+        <div class="col">
+          <a class="btn btn-outline-success fw-bolder px-4" href="{% url 'transaction-create' %}">Додати</a>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center my-3">
+        {% if transactions|length == 0 %}
+        <div class="col text-center mt-5">
+          <h5 class="text-secondary">У вас немає транзакцій</h5>
+        </div>
+        {% else %}
+        <div class="col">
+          <div class="card shadow-sm border-top-0">
+            <div class="card-body">
+              <div class="row justify-content-center align-items-center py-1">
+                <div class="col-1 text-center">
+                  <div class="text-secondary fw-bolder">ID</div>
+                </div>
+                <div class="col-2">
+                  <div class="text-secondary fw-bolder">Сума</div>
+                </div>
+                <div class="col-3 text-center">
+                  <div class="text-secondary fw-bolder">Категорія</div>
+                </div>
+                <div class="col-3 text-center">
+                  <div class="text-secondary fw-bolder">Рахунок</div>
+                </div>
+                <div class="col-2 text-center">
+                  <div class="text-secondary fw-bolder">Дата</div>
+                </div>
+                 <div class="col-1 text-center">
+                  <div class=""></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% for transaction in transactions %}
+      <div id="transaction-{{transaction.id}}" class="row justify-content-center align-items-center mb-2">
+        <div class="col">
+          <div class="card shadow-sm border-top-0">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-1 text-center">
+                  <div class="">{{ forloop.counter }}</div>
+                </div>
+                <div class="col-2 fw-bolder"> {# TODO add colors #}
+                  <div>{{ transaction.amount }} {{ transaction.account.symbol }}</div>
+                </div>
+                <div class="col-3 text-center">
+                  <div>{{ transaction.category.name }}</div>
+                </div>
+                <div class="col-3 text-center">
+                  <div class="">{{ transaction.account.name }}</div>
+                </div>
+                {% get_data_from_timestamp transaction.created_at as transaction_datetime %}
+                <div class="col-2 text-center">
+                  <div class="">{{ transaction_datetime }}</div>
+                </div>
+                <div class="col-1 text-center">
+                  <button class="btn text-danger" onclick="deleteTransaction('{{ transaction.id }}', '{{ csrf_token }}')">
+                    <i class="fa-solid fa-xmark fa-lg"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {%  endblock %}

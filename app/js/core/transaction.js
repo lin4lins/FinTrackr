@@ -26,3 +26,30 @@ incomeBtn.addEventListener('click', () => {
   const expenseDivElement = document.getElementById('exp-category-div');
   expenseDivElement.style.display = 'none';
 });
+
+
+function deleteTransaction(transactionId, csrfToken) {
+  if (confirm("Ви впевнені, що хочете видалити цю транзакцію?")) {
+    let url = `/transaction/${transactionId}/`;
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken
+      },
+    })
+    .then(function(response) {
+      if (response.ok) {
+        let transaction = document.getElementById(`transaction-${transactionId}`);
+        transaction.remove();
+      } else {
+        alert("Не вдалося видалити транзакцію.");
+      }
+    })
+    .catch(function(error) {
+      console.log(error);
+      alert("Під час видалення транзакціЇ виникла помилка.");
+    });
+  }
+}
