@@ -4,7 +4,7 @@ from core.views.account import (
     AccountCreateView,
     AccountDetailView,
 )
-from core.views.category import CategoryDetailView, CategoryView
+from core.views.category import CategoryDetailView, CategoryListView
 from core.views.home import HomeView
 from django.urls import path
 
@@ -12,7 +12,7 @@ from core.views.transaction import TransactionCreateView, TransactionListView, T
 
 urlpatterns = [
     path("home/", HomeView.as_view(), name="home"),
-    path("category/", CategoryView.as_view(), name="category"),
+    path("category/", CategoryListView.as_view(), name="category"),
     path("account/first/", FirstAccountView.as_view(), name="account-create-first"),
     path("account/create/", AccountCreateView.as_view(), name="account-create"),
     path("account/<int:account_id>/", AccountDetailView.as_view(), name="account-detail"),
