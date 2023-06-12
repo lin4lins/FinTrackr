@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import MinValueValidator
 
-from .models import Category, Account, Currency, Transaction
+from .models import Account, Category, Currency, Transaction
 
 
 class CategoryForm(forms.ModelForm):

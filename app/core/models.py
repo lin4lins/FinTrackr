@@ -1,5 +1,5 @@
-from django.db import models, transaction
 from colorfield.fields import ColorField
+from django.db import models, transaction
 
 from authorization.models import User
 

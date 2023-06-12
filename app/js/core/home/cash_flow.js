@@ -28,7 +28,6 @@ function drawCashFlow() {
 
     };
 
-    console.log(cash_flow_chart_element_id);
     var chart_element = document.getElementById(cash_flow_chart_element_id);
     var chart = new google.visualization.BarChart(chart_element);
     chart.draw(view, options);

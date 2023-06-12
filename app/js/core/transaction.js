@@ -48,7 +48,6 @@ function deleteTransaction(transactionId, csrfToken) {
       }
     })
     .catch(function(error) {
-      console.log(error);
       alert("Під час видалення транзакціЇ виникла помилка.");
     });
   }

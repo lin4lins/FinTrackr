@@ -1,9 +1,9 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from django.db.models import Sum
 from django.utils import timezone
 
-from core.models import Transaction, Category
+from core.models import Category, Transaction
 
 
 class CategoryStructureGenerator:
@@ -71,3 +71,29 @@ class CashFlowData:
         total_expenses = round(total_amount, 2)
 
         return total_expenses
+
+
+class MonthlyBalance:
+    def __init__(self, account):
+        self.__account = account
+        self.__current_date = datetime.now()
+        self.data = [[self.__current_date.day, self.__account.balance]]
+
+        self.fill_data()
+
+    def fill_data(self):
+        first_day_number = self.data[0][0]
+        if first_day_number == 1:
+            return
+
+        day_before = first_day_number - 1
+        desired_date = date(self.__current_date.year, self.__current_date.month, day_before)
+        transactions_sum = Transaction.objects.filter(
+            account=self.__account, created_at__date=desired_date
+        ).aggregate(total_amount=Sum("amount"))
+        total_amount = transactions_sum["total_amount"] or 0
+        day_before_balance = round(self.__account.balance - total_amount, 2)
+
+        self.data.insert(0, [day_before, day_before_balance])
+
+        self.fill_data()

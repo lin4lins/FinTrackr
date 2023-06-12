@@ -18,7 +18,6 @@ function deleteAccount(accountId, csrfToken) {
       }
     })
     .catch(function(error) {
-      console.log(error);
       alert("Під час видалення рахунку виникла помилка.");
     });
   }

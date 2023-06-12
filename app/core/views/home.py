@@ -5,7 +5,11 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
 
-from core.helpers.home.money_structure import CategoryStructureGenerator, CashFlowData
+from core.helpers.home.money_structure import (
+    CashFlowData,
+    CategoryStructureGenerator,
+    MonthlyBalance,
+)
 from core.models import Account, Transaction
 
 
@@ -28,11 +32,13 @@ class HomeView(LoginRequiredMixin, View):
         )[:4]
 
         cash_flow_data = CashFlowData(account=selected_account)
+        balance_dynamics = MonthlyBalance(account=selected_account)
 
         template_data = {
             "active_page": "home",
             "accounts": user_accounts,
             "cash_flow_data": json.dumps(cash_flow_data.data),
+            "balance_dynamics_data": json.dumps(balance_dynamics.data),
             "expense_structure_data": json.dumps(structure_generator.expense_structure_data),
             "income_structure_data": json.dumps(structure_generator.income_structure_data),
             "last_transactions": last_transactions,

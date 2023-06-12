@@ -42,7 +42,7 @@
         <div class="card dashboard-card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Динаміка</h5>
-            <div id="home_balance"></div>
+            <div id="balance_dynamics"></div>
           </div>
         </div>
       </div>
@@ -120,7 +120,10 @@
           data-income-structure-data="{{ income_structure_data }}"
           data-chart-element-id="income_structure"></script>
 
-  <script type="text/javascript" src="{% static 'core/home/balance.js' %}" defer></script>
+  <script type="text/javascript" src="{% static 'core/home/balance.js' %}" defer
+          data-balance-dynamics-data="{{ balance_dynamics_data }}"
+          data-chart-element-id="balance_dynamics"></script>
+
   <script type="text/javascript" src="{% static 'core/home/trend.js' %}" defer></script>
 
 {% endblock %}
