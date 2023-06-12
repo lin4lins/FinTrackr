@@ -1,27 +1,16 @@
 google.charts.load("current", {packages: ["corechart"]});
 google.charts.setOnLoadCallback(drawChart);
 
+const trend_data = JSON.parse(
+    document.currentScript.dataset.trendData
+  );
+const trend_chart_element_id = document.currentScript.dataset.chartElementId;
+
 function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['День', 'Баланс'],
-        [1,  37.8],
-        [2,  30.9],
-        [3,  25.4],
-        [4,  11.7],
-        [5,  11.9],
-        [6,   8.8],
-        [7,   7.6],
-        [8,  12.3],
-        [9,  16.9],
-        [10, 12.8],
-        [11,  5.3],
-        [12,  6.6],
-        [13,  64.8],
-        [14,  42.2],
-        [21,  16.9],
-        [26,  20.8],
-        [27,  32.6],
-    ]);
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'День');
+    data.addColumn('number', 'Баланс');
+    data.addRows(trend_data);
 
     var options = {
         title: '',
@@ -45,7 +34,7 @@ function drawChart() {
         height: 250
     };
 
-    var chart_element = document.getElementById('polynomial_trend');
+    var chart_element = document.getElementById(trend_chart_element_id);
     var chart = new google.visualization.ScatterChart(chart_element);
     chart.draw(data, options);
 }

@@ -124,6 +124,8 @@
           data-balance-dynamics-data="{{ balance_dynamics_data }}"
           data-chart-element-id="balance_dynamics"></script>
 
-  <script type="text/javascript" src="{% static 'core/home/trend.js' %}" defer></script>
+  <script type="text/javascript" src="{% static 'core/home/trend.js' %}" defer
+          data-trend-data="{{ balance_dynamics_data }}"
+          data-chart-element-id="polynomial_trend"></script>
 
 {% endblock %}
