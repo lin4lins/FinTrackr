@@ -63,7 +63,7 @@ class Transaction(models.Model):
 
     def save(self, *args, **kwargs):
         with transaction.atomic():
-            if self.category.type == Category.EXPENSE:
+            if self.category.type == Category.EXPENSE and self.amount > 0:
                 self.amount *= -1
             super().save(*args, **kwargs)
 

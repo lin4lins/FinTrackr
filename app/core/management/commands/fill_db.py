@@ -83,8 +83,16 @@ class Command(BaseCommand):
         uah_currency = self.__currencies[0]
         usd_currency = self.__currencies[1]
         self.__accounts = [
-            Account(name="Готівка", balance=0.0, currency=uah_currency, user=self.__user),
-            Account(name="Картка", balance=0.0, currency=uah_currency, user=self.__user),
+            Account(
+                name="Готівка",
+                balance=0.0,
+                currency=uah_currency,
+                user=self.__user,
+                color="#563D7C",
+            ),
+            Account(
+                name="Картка", balance=0.0, currency=uah_currency, user=self.__user, color="#000000"
+            ),
             Account(name="Збереження", balance=0.0, currency=usd_currency, user=self.__user),
         ]
 
