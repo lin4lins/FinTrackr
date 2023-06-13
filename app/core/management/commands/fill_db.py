@@ -158,6 +158,8 @@ class Command(BaseCommand):
     def __update_transactions_datetime(self):
         for transaction in self.__transactions:
             transaction.created_at = self.__get_random_datetime()
+            # hack look at Transaction model.
+            transaction.account.balance = transaction.account.balance - transaction.amount
             transaction.save()
 
     def __generate_transactions(self, category, account, limit, income=False):

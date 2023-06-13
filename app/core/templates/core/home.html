@@ -11,7 +11,7 @@
   <div class="row">
     {%  for account in accounts %}
       <div class="col-sm-6 col-md-4 col-lg-3 p-3">
-        <div class="account-card d-flex" style="background-color: {{ account.color }}">
+        <div class="account-card d-flex" style="background-color: {{ account.color }}; transform: rotate(0);">
           <div class="d-flex align-items-center">
             <i class="fa-solid fa-wallet fa-xl"></i>
           </div>
@@ -19,6 +19,7 @@
             <div class="account-card-name">{{ account.name }}</div>
             <div class="detail"><span class="amount">{{ account.balance|floatformat:2 }}</span>  <span class="currency">{{ account.currency.symbol }}</span></div>
           </div>
+          <a href="{% url 'home' %}?account-id={{ account.id }}" class="stretched-link"></a>
         </div>
       </div>
     {%  endfor %}
