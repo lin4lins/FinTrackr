@@ -18,7 +18,6 @@ function deleteCategory(categoryId, csrfToken) {
       }
     })
     .catch(function(error) {
-      console.log(error);
       alert("Під час видалення категорії виникла помилка.");
     });
   }

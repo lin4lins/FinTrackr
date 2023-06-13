@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 
@@ -57,7 +57,9 @@ class TransactionListView(LoginRequiredMixin, View):
 
     def get(self, request):
         user = request.user
-        transactions = Transaction.objects.filter(account__in=user.accounts.all())
+        transactions = Transaction.objects.filter(account__in=user.accounts.all()).order_by(
+            "-created_at"
+        )
         return render(
             request,
             self.template_name,

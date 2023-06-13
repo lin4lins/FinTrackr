@@ -1,11 +1,12 @@
-from core.forms import CategoryForm
-from core.models import Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
+
+from core.forms import CategoryForm
+from core.models import Category
 
 
 class CategoryListView(LoginRequiredMixin, View):

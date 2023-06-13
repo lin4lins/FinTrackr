@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load transaction_color %}
 {% load static %}
 
 
@@ -9,17 +10,17 @@
 <div id="home-accounts-panel" class="container">
   <div class="row">
     {%  for account in accounts %}
-    <div class="col-sm-6 col-md-4 col-lg-3 p-3">
-      <div class="account-card d-flex" style="background-color: {{ account.color }}">
-        <div class="d-flex align-items-center">
-          <i class="fa-solid fa-wallet fa-xl"></i>
-        </div>
-        <div class="ms-2 ps-2">
-          <div class="account-card-name">{{ account.name }}</div>
-          <div class="detail"><span class="amount">{{ account.balance }}</span>  <span class="currency">{{ account.currency.symbol }}</span></div>
+      <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+        <div class="account-card d-flex" style="background-color: {{ account.color }}">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-wallet fa-xl"></i>
+          </div>
+          <div class="ms-2 ps-2">
+            <div class="account-card-name">{{ account.name }}</div>
+            <div class="detail"><span class="amount">{{ account.balance|floatformat:2 }}</span>  <span class="currency">{{ account.currency.symbol }}</span></div>
+          </div>
         </div>
       </div>
-    </div>
     {%  endfor %}
   </div>
 </div>
@@ -32,7 +33,7 @@
         <div class="card dashboard-card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Грошові потоки</h5>
-            <div id="home_cash_flow"></div>
+            <div id="cash_flow"></div>
           </div>
         </div>
       </div>
@@ -41,7 +42,7 @@
         <div class="card dashboard-card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Динаміка</h5>
-            <div id="home_balance"></div>
+            <div id="balance_dynamics"></div>
           </div>
         </div>
       </div>
@@ -59,58 +60,20 @@
         <div class="card dashboard-card">
           <div class="card-body px-0">
             <h5 class="card-title ps-3">Останні транзакції</h5>
-
-            <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Комунальні платежі</div>
-                <div class="account">Готівка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum expense-transaction-color">
-                  <span class="amount">-2,451.00</span>  <span class="currency">&#8372</span>
+            {% for transaction in last_transactions %}
+              <div class="transaction-card d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                  <div class="category">{{ transaction.category.name }}</div>
+                  <div class="account">{{ transaction.account.name }}</div>
                 </div>
-                <div class="date">24.05.2023, 20:45</div>
-              </div>
-            </div>
-
-            <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Фріланс</div>
-                <div class="account">Картка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum income-transaction-color">
-                  <span class="amount">9,500.00</span>  <span class="currency">&#8372</span>
+                <div class="d-flex flex-column text-end">
+                  <div class="sum {{ transaction|transaction_color }}">
+                    <span class="amount">{{ transaction.amount }}</span> <span class="currency">{{ transaction.account.currency.symbol }}</span>
+                  </div>
+                  <div class="date">{{ transaction.created_at|date:"d.m.Y, H:i" }}</div>
                 </div>
-                <div class="date">24.06.2023, 13:00</div>
               </div>
-            </div>
-
-                        <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Комунальні платежі</div>
-                <div class="account">Готівка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum expense-transaction-color">
-                  <span class="amount">-2,451.00</span>  <span class="currency">&#8372</span>
-                </div>
-                <div class="date">24.05.2023, 20:45</div>
-              </div>
-            </div>
-
-            <div class="transaction-card d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="category">Фріланс</div>
-                <div class="account">Картка</div>
-              </div>
-              <div class="d-flex flex-column text-end">
-                <div class="sum income-transaction-color">
-                  <span class="amount">9,500.00</span>  <span class="currency">&#8372</span>
-                </div>
-                <div class="date">24.06.2023, 13:00</div>
-              </div>
-            </div>
+            {% endfor %}
 
           </div>
         </div>
@@ -144,11 +107,25 @@
 {% block footer_js %}
   {{ block.super }}
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript" src="{% static 'home/cash_flow.js' %}"></script>
-  <script type="text/javascript" src="{% static 'home/expense_structure.js' %}"></script>
-  <script type="text/javascript" src="{% static 'home/income_structure.js' %}"></script>
-  <script type="text/javascript" src="{% static 'home/balance.js' %}"></script>
-  <script type="text/javascript" src="{% static 'home/trend.js' %}"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
+  <script type="text/javascript" src="{% static 'core/home/cash_flow.js' %}" defer
+          data-cash-flow-data="{{ cash_flow_data }}"
+          data-chart-element-id="cash_flow"></script>
+
+  <script type="text/javascript" src="{% static 'core/home/expense_structure.js' %}" defer
+          data-expense-structure-data="{{ expense_structure_data }}"
+          data-chart-element-id="expense_structure"></script>
+
+  <script type="text/javascript" src="{% static 'core/home/income_structure.js' %}" defer
+          data-income-structure-data="{{ income_structure_data }}"
+          data-chart-element-id="income_structure"></script>
+
+  <script type="text/javascript" src="{% static 'core/home/balance.js' %}" defer
+          data-balance-dynamics-data="{{ balance_dynamics_data }}"
+          data-chart-element-id="balance_dynamics"></script>
+
+  <script type="text/javascript" src="{% static 'core/home/trend.js' %}" defer
+          data-trend-data="{{ balance_dynamics_data }}"
+          data-chart-element-id="polynomial_trend"></script>
 
 {% endblock %}

@@ -3,8 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, render
 from django.views import View
 
-from authorization.forms import SignUpForm, CustomAuthenticationForm
-
+from authorization.forms import CustomAuthenticationForm, SignUpForm
 
 # Create your views here.
 

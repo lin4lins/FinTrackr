@@ -1,14 +1,14 @@
+from django.urls import path
+
 from core.views.account import (
-    AccountListView,
-    FirstAccountView,
     AccountCreateView,
     AccountDetailView,
+    AccountListView,
+    FirstAccountView,
 )
 from core.views.category import CategoryDetailView, CategoryListView
 from core.views.home import HomeView
-from django.urls import path
-
-from core.views.transaction import TransactionCreateView, TransactionListView, TransactionDetailView
+from core.views.transaction import TransactionCreateView, TransactionDetailView, TransactionListView
 
 urlpatterns = [
     path("home/", HomeView.as_view(), name="home"),

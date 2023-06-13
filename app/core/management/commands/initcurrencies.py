@@ -3,9 +3,9 @@ from django.core.management import BaseCommand
 from core.models import Currency
 
 DEFAULT_CURRENCIES = [
-    {"name": "долар США", "code": "USD", "symbol": "$"},
-    {"name": "євро", "code": "EUR", "symbol": "€"},
-    {"name": "гривня", "code": "UAH", "symbol": "₴"},
+    {"name": "Долар США", "code": "USD", "symbol": "$"},
+    {"name": "Євро", "code": "EUR", "symbol": "€"},
+    {"name": "Гривня", "code": "UAH", "symbol": "₴"},
 ]
 
 

@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 
 from authorization.models import User
-from core.models import Currency, Category, Account, Transaction
+from core.models import Account, Category, Currency, Transaction
 
 
 class Command(BaseCommand):
@@ -50,9 +50,9 @@ class Command(BaseCommand):
 
     def __create_currencies(self):
         self.__currencies = [
-            Currency(symbol="₴", code="UAH", name="Ukrainian hryvnia"),
-            Currency(symbol="$", code="USD", name="United States dollar"),
-            Currency(symbol="€", code="EUR", name="Euro"),
+            Currency(symbol="₴", code="UAH", name="Гривня"),
+            Currency(symbol="$", code="USD", name="Долар США"),
+            Currency(symbol="€", code="EUR", name="Євро"),
         ]
 
         [currency.save() for currency in self.__currencies]
