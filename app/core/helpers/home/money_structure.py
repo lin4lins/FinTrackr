@@ -42,7 +42,7 @@ class CategoryStructureGenerator:
         total_amount = self.__compute_transactions_sum(category)
 
         if category.type == Category.EXPENSE:
-            self.expense_structure_data.append([category.name, total_amount])
+            self.expense_structure_data.append([category.name, total_amount * -1])
         if category.type == Category.INCOME:
             self.income_structure_data.append([category.name, total_amount])
 
@@ -58,7 +58,7 @@ class CashFlowData:
         self.data = [
             headers,
             ["Дохід", self.__get_total_amount(expense=False), income_color],
-            ["Витрати", self.__get_total_amount(expense=True), expense_color],
+            ["Витрати", self.__get_total_amount(expense=True) * -1, expense_color],
         ]
 
     def __get_total_amount(self, expense=False):
